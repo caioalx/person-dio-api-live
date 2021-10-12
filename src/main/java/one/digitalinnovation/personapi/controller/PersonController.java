@@ -33,4 +33,21 @@ public class PersonController {
         return  personService.listAll();
     }
 
+    @GetMapping("/{id}")
+    public PersonDTO findById(@PathVariable("id") Long id) {
+        return personService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable("id") Long id) {
+        personService.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDTO update(@PathVariable("id") Long id, @RequestBody @Valid PersonDTO personDTO)  {
+        return personService.updateById(id, personDTO);
+    }
+
 }
